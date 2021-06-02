@@ -37,7 +37,7 @@ async function submit(Question){
     let questionuuid = Object.values(questionquery)[0].returning[0].uuid
     var i;
     for (i = 0; i < answers.length; i++) {
-        graphql(sendingAnswers(answers[i].text, questionuuid));
+        await graphql(sendingAnswers(answers[i].text, questionuuid));
     }location.reload()}
     else if(answers.length < 2){
         alert("You must have more than 1 answer!")
@@ -66,6 +66,7 @@ let Question = ""
 
   
 </script>
+<span class="new-poll">
 <input bind:value={Question} placeholder="Your Question" style="width: 222px;" id="title">
 {#each answers as answer, index}
 	<div>
@@ -86,7 +87,19 @@ let Question = ""
 	New answer
 </button>
 <button type="submit" value="Submit" on:click={submit(Question)}>Submit</button>
+</span>
 <style>
+  .new-poll{
+    background-color: #121212;
+opacity: 1;
+background: linear-gradient(135deg, #1c1c1c55 25%, transparent 25%) -12px 0/ 24px 24px, linear-gradient(225deg, #1c1c1c 25%, transparent 25%) -12px 0/ 24px 24px, linear-gradient(315deg, #1c1c1c55 25%, transparent 25%) 0px 0/ 24px 24px, linear-gradient(45deg, #1c1c1c 25%, #121212 25%) 0px 0/ 24px 24px;
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 15px;  
+    display: inline-block;
+      }
     #cross{
         color: red;
     }
